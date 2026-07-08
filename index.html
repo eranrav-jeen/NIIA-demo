@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NIIA OS · שרשרת המתודולוגיה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#F1ECE3}
+  ::selection{background:#D9D2F5}
+  a{color:#6B5BD2;text-decoration:none}
+  a:hover{color:#5241bd}
+  @keyframes ni-rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .ni-scroll::-webkit-scrollbar{height:10px;width:10px}
+  .ni-scroll::-webkit-scrollbar-thumb{background:#D9D0C2;border-radius:999px;border:2px solid #F1ECE3}
+  .tab-btn{display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:999px;cursor:pointer;font-family:Rubik,sans-serif;font-size:13.5px;font-weight:600;transition:all .15s;background:transparent;color:#8A8079}
+  .tab-btn.active{background:#6B5BD2;color:#fff;box-shadow:0 4px 12px rgba(107,91,210,.3)}
+  .stage-tile{box-shadow:inset 0 0 0 1px #F0EAE0}
+  .stage-tile.active-ring{box-shadow:0 0 0 2px #6B5BD2, 0 10px 26px rgba(107,91,210,.18)}
+  .view-mobile{display:flex;flex-direction:column;align-items:center;gap:16px}
+</style>
+</head>
+<body>
+<div dir="rtl" style="min-height:100vh;background:radial-gradient(1200px 600px at 90% -10%, #EDE7FA 0%, rgba(237,231,250,0) 55%), #F1ECE3;font-family:Assistant,sans-serif;color:#2E2621;padding:26px 30px 60px">
+
+  <!-- ===== APP BAR ===== -->
+  <div style="max-width:1240px;margin:0 auto 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#6B5BD2,#8A79E8);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(107,91,210,.35)">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+      </div>
+      <div>
+        <div style="font-family:Rubik,sans-serif;font-weight:700;font-size:18px;letter-spacing:.01em;line-height:1">NIIA <span style="color:#6B5BD2">OS</span></div>
+        <div style="font-size:12px;color:#9A8F84;margin-top:2px">שרשרת המתודולוגיה · מהאתגר ל‑Gate</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #E7E0D6;padding:6px;border-radius:999px;box-shadow:0 2px 10px rgba(46,38,33,.04)">
+      <div class="tab-btn active" data-view-btn="single" onclick="setView('single')">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16"/><circle cx="6" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="18" cy="12" r="2"/></svg>
+        מסלול פרויקט
+      </div>
+      <div class="tab-btn" data-view-btn="portfolio" onclick="setView('portfolio')">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg>
+        פורטפוליו
+      </div>
+      <div class="tab-btn" data-view-btn="mobile" onclick="setView('mobile')">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>
+        מובייל
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ===================== SINGLE PROJECT ======================= -->
+  <!-- ============================================================ -->
+    <div class="view" data-view="single" style="max-width:1240px;margin:0 auto;animation:ni-rise .35s ease both">
+
+    <!-- Project header -->
+    <div style="background:linear-gradient(135deg,#332B4F 0%,#3D3552 55%,#4A3F5E 100%);border-radius:22px;padding:26px 30px;color:#fff;position:relative;overflow:hidden;box-shadow:0 18px 40px rgba(51,43,79,.25)">
+      <div style="position:absolute;top:-40px;left:-30px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,#7C6BE0 0%,rgba(124,107,224,0) 70%);opacity:.5"></div>
+      <div style="position:relative;display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div style="min-width:280px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+            <span style="font-size:12px;font-weight:600;color:#C9BFF3;background:rgba(255,255,255,.1);padding:4px 11px;border-radius:999px;letter-spacing:.03em">יוזמה #INI‑2026‑047</span>
+            <span style="font-size:12px;font-weight:700;color:#0f3;background:rgba(63,201,157,.18);color:#8DE9C6;padding:4px 11px;border-radius:999px">אתגר פעיל</span>
+          </div>
+          <div style="font-family:Rubik,sans-serif;font-weight:700;font-size:28px;line-height:1.2">קיצור זמני המתנה בחדרי מיון</div>
+          <div style="display:flex;align-items:center;gap:18px;margin-top:14px;flex-wrap:wrap">
+            <div style="display:flex;align-items:center;gap:8px">
+              <div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#E9A6C9,#B78BE8);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff">מב</div>
+              <div style="line-height:1.2"><div style="font-size:13px;font-weight:600">ד״ר מיכל ברזילי</div><div style="font-size:11px;color:#B7ADD9">בעלת אחריות · מדיניות בריאות</div></div>
+            </div>
+            <div style="width:1px;height:26px;background:rgba(255,255,255,.15)"></div>
+            <div style="display:flex;align-items:center;gap:7px;font-size:13px;color:#D6CFF0">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+              נפתח 12.03.2026
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button style="display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-family:Assistant;font-weight:600;font-size:13px;padding:10px 16px;border-radius:11px;cursor:pointer">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M4 21h16"/></svg>ייצוא
+          </button>
+          <button style="display:flex;align-items:center;gap:7px;background:#fff;border:none;color:#332B4F;font-family:Assistant;font-weight:700;font-size:13px;padding:10px 16px;border-radius:11px;cursor:pointer">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h4"/></svg>הפק Decision Brief
+          </button>
+        </div>
+      </div>
+      <!-- progress -->
+      <div style="position:relative;margin-top:24px">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#C9BFF3;margin-bottom:7px"><span>התקדמות במסלול · שלב 4 מתוך 6</span><span style="font-weight:700;color:#fff">58%</span></div>
+        <div style="height:8px;border-radius:999px;background:rgba(255,255,255,.14);overflow:hidden"><div style="height:100%;width:58%;border-radius:999px;background:linear-gradient(90deg,#3FC99D,#8A79E8)"></div></div>
+      </div>
+    </div>
+
+    <!-- ===== PIPELINE RAIL ===== -->
+    <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;padding:24px 22px;margin-top:18px;box-shadow:0 4px 18px rgba(46,38,33,.05)">
+      <div style="display:flex;align-items:stretch;gap:0">
+
+        <!-- 1 Challenge -->
+        <div class="stage-tile" data-stage="ch" onclick="selectStage('ch')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;transition:box-shadow .18s">
+          <div style="position:absolute;top:10px;left:12px;width:20px;height:20px;border-radius:50%;background:#E4F3EE;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#1F8A70" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#B4A99D;letter-spacing:.08em">שלב 01</div><div style="font-family:Rubik;font-weight:600;font-size:14px;margin:3px 0 8px">אתגר</div><span style="font-size:11px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:3px 10px;border-radius:999px">הושלם</span></div>
+        </div>
+        <div style="flex:0 0 auto;width:22px;display:flex;align-items:center;justify-content:center;color:#3FC99D"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+
+        <!-- 2 Focus -->
+        <div class="stage-tile" data-stage="fo" onclick="selectStage('fo')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;transition:box-shadow .18s">
+          <div style="position:absolute;top:10px;left:12px;width:20px;height:20px;border-radius:50%;background:#E4F3EE;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#1F8A70" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#B4A99D;letter-spacing:.08em">שלב 02</div><div style="font-family:Rubik;font-weight:600;font-size:14px;margin:3px 0 8px">תחום מיקוד</div><span style="font-size:11px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:3px 10px;border-radius:999px">הושלם</span></div>
+        </div>
+        <div style="flex:0 0 auto;width:22px;display:flex;align-items:center;justify-content:center;color:#3FC99D"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+
+        <!-- 3 Life problem -->
+        <div class="stage-tile" data-stage="li" onclick="selectStage('li')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;transition:box-shadow .18s">
+          <div style="position:absolute;top:10px;left:12px;width:20px;height:20px;border-radius:50%;background:#E4F3EE;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="#1F8A70" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="11" r="2"/><path d="M5.4 16c.6-1.6 2-2.3 3.1-2.3s2.5.7 3.1 2.3"/><path d="M14.5 10h4M14.5 13.5h4"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#B4A99D;letter-spacing:.08em">שלב 03</div><div style="font-family:Rubik;font-weight:600;font-size:14px;margin:3px 0 8px">בעיית חיים</div><span style="font-size:11px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:3px 10px;border-radius:999px">הושלם</span></div>
+        </div>
+        <div style="flex:0 0 auto;width:22px;display:flex;align-items:center;justify-content:center;color:#3FC99D"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></div>
+
+        <!-- 4 AI Fit (active) -->
+        <div class="stage-tile active-ring" data-stage="ai" onclick="selectStage('ai')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;background:linear-gradient(180deg,#F4F1FE,#fff);transition:box-shadow .18s">
+          <div style="position:absolute;top:10px;left:12px;font-size:9px;font-weight:800;color:#6B5BD2;background:#EAE5FB;padding:3px 7px;border-radius:6px;letter-spacing:.05em">כאן</div>
+          <div style="width:46px;height:46px;border-radius:13px;background:linear-gradient(145deg,#6B5BD2,#8A79E8);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;box-shadow:0 8px 18px rgba(107,91,210,.35)"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#8A79E8;letter-spacing:.08em">שלב 04</div><div style="font-family:Rubik;font-weight:700;font-size:14px;margin:3px 0 8px;color:#4A3D9E">AI Fit</div><span style="font-size:11px;font-weight:700;color:#5B4BD0;background:#EAE5FB;padding:3px 10px;border-radius:999px">בתהליך</span></div>
+        </div>
+        <div style="flex:0 0 auto;width:22px;display:flex;align-items:center;justify-content:center;color:#D8D0C3"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 3"><path d="M15 6l-6 6 6 6"/></svg></div>
+
+        <!-- 5 Project card (locked) -->
+        <div class="stage-tile" data-stage="pr" onclick="selectStage('pr')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;transition:box-shadow .18s;opacity:.62">
+          <div style="position:absolute;top:10px;left:12px;color:#B4A99D"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          <div style="width:46px;height:46px;border-radius:13px;background:#EFEBE4;color:#B4A99D;display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#C3B9AC;letter-spacing:.08em">שלב 05</div><div style="font-family:Rubik;font-weight:600;font-size:14px;margin:3px 0 8px;color:#9A8F84">כרטיס פרויקט</div><span style="font-size:11px;font-weight:700;color:#A99E92;background:#EFEBE4;padding:3px 10px;border-radius:999px">נעול</span></div>
+        </div>
+        <div style="flex:0 0 auto;width:22px;display:flex;align-items:center;justify-content:center;color:#D8D0C3"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="2 3"><path d="M15 6l-6 6 6 6"/></svg></div>
+
+        <!-- 6 Gate (locked) -->
+        <div class="stage-tile" data-stage="ga" onclick="selectStage('ga')" style="flex:1 1 0;cursor:pointer;position:relative;border-radius:16px;padding:16px 12px;transition:box-shadow .18s;opacity:.62">
+          <div style="position:absolute;top:10px;left:12px;color:#B4A99D"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div>
+          <div style="width:46px;height:46px;border-radius:13px;background:#EFEBE4;color:#B4A99D;display:flex;align-items:center;justify-content:center;margin:0 auto 10px"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.3 12l2 2 3.4-4"/></svg></div>
+          <div style="text-align:center"><div style="font-size:11px;font-weight:700;color:#C3B9AC;letter-spacing:.08em">שלב 06</div><div style="font-family:Rubik;font-weight:600;font-size:14px;margin:3px 0 8px;color:#9A8F84">Gate</div><span style="font-size:11px;font-weight:700;color:#A99E92;background:#EFEBE4;padding:3px 10px;border-radius:999px">נעול</span></div>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:8px;font-size:12px;color:#A99E92">בחרו תחנה כדי לצפות בפרטים · השרשרת זורמת מימין לשמאל, עם אפשרות חזרה לשלב קודם</div>
+    </div>
+
+    <!-- ===== DETAIL PANELS ===== -->
+
+    <!-- AI FIT (default) -->
+    <div class="panel" data-panel="ai" style="margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;overflow:hidden;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;background:linear-gradient(120deg,#F4F1FE,#FBFAFF);border-bottom:1px solid #ECE6F7;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:14px">
+            <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#6B5BD2,#8A79E8);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 18px rgba(107,91,210,.3)"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3"/></svg></div>
+            <div><div style="font-size:12px;font-weight:700;color:#8A79E8;letter-spacing:.06em">שלב 04</div><div style="font-family:Rubik;font-weight:700;font-size:22px;color:#2E2621">AI Fit · הערכת התאמה ל‑AI</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-size:12px;font-weight:700;color:#5B4BD0;background:#EAE5FB;padding:6px 13px;border-radius:999px">בתהליך</span>
+            <div style="display:flex;align-items:center;gap:8px;background:#E4F3EE;border:1px solid #B9E4D5;padding:8px 15px;border-radius:12px">
+              <span style="width:10px;height:10px;border-radius:50%;background:#22A67F;box-shadow:0 0 0 4px rgba(34,166,127,.18)"></span>
+              <span style="font-family:Rubik;font-weight:700;font-size:15px;color:#1F8A70">מתאים ל‑AI</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="padding:24px 26px">
+          <!-- field grid -->
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+            <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px">
+              <div style="font-size:11px;font-weight:800;color:#A99E92;letter-spacing:.04em;margin-bottom:7px">סוג ה‑AI המוצע</div>
+              <div style="font-size:14px;color:#3A322C;line-height:1.6">מודל <b>חיזוי סדרות עתיות (Time‑Series Forecasting)</b> לניבוי עומסי הגעה, בשילוב מנוע <b>אופטימיזציה</b> להקצאת צוותים ומיטות בזמן אמת.</div>
+            </div>
+            <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px">
+              <div style="font-size:11px;font-weight:800;color:#A99E92;letter-spacing:.04em;margin-bottom:7px">תנאי סף</div>
+              <div style="font-size:14px;color:#3A322C;line-height:1.6">דאטה היסטורי של <b>24 חודשים</b> לפחות ברזולוציה שעתית · חתימת DPA מול משרד הבריאות · תקן אבטחת מידע ISO 27799.</div>
+            </div>
+            <div style="background:#FFF6F1;border:1px solid #F6DCCD;border-radius:14px;padding:16px 18px">
+              <div style="font-size:11px;font-weight:800;color:#C0714B;letter-spacing:.04em;margin-bottom:7px;display:flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#CF5F44" stroke-width="2" stroke-linecap="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 4.3 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/></svg>פערי דאטה</div>
+              <div style="font-size:14px;color:#3A322C;line-height:1.6">חסר תיעוד אחיד של זמני שהייה בין מחלקות · אין תיוג ל‑<b>triage</b> ב‑30% מהרשומות · שונות בין בתי החולים בשיטת הרישום.</div>
+            </div>
+            <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px">
+              <div style="font-size:11px;font-weight:800;color:#A99E92;letter-spacing:.04em;margin-bottom:7px">הערכת סיכון ראשונית</div>
+              <div style="display:flex;align-items:center;gap:10px"><span style="font-size:12px;font-weight:800;color:#B7862A;background:#FBF0D6;padding:5px 12px;border-radius:999px">בינוני</span><span style="font-size:13px;color:#6B6259">נתוני בריאות רגישים · השפעה על שיקול דעת קליני</span></div>
+            </div>
+          </div>
+
+          <!-- non-AI alternatives -->
+          <div style="margin-top:16px;background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px">
+            <div style="font-size:11px;font-weight:800;color:#A99E92;letter-spacing:.04em;margin-bottom:10px">חלופות שאינן AI שנבחנו</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <span style="font-size:13px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:7px 14px;border-radius:999px">הגדלת תקני כוח אדם</span>
+              <span style="font-size:13px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:7px 14px;border-radius:999px">מסלול Fast‑Track ידני למקרים קלים</span>
+              <span style="font-size:13px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:7px 14px;border-radius:999px">הפניית עומסים למרפאות דחופות</span>
+            </div>
+          </div>
+
+          <!-- comparison table -->
+          <div style="margin-top:16px;border:1px solid #EFE9DF;border-radius:14px;overflow:hidden">
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;background:#F4F1FE;font-family:Rubik;font-weight:600;font-size:13px;color:#4A3D9E">
+              <div style="padding:12px 16px">קריטריון</div>
+              <div style="padding:12px 16px;border-right:1px solid #E7E0D6;display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:50%;background:#6B5BD2"></span>פתרון AI</div>
+              <div style="padding:12px 16px;border-right:1px solid #E7E0D6">חלופה לא‑AI</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;font-size:13.5px;border-top:1px solid #F0EAE0"><div style="padding:12px 16px;color:#6B6259;font-weight:600">עלות הקמה</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0">בינונית‑גבוהה</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0">גבוהה (שוטפת)</div></div>
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;font-size:13.5px;border-top:1px solid #F0EAE0;background:#FCFBF8"><div style="padding:12px 16px;color:#6B6259;font-weight:600">זמן ליישום</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0">6–9 חודשים</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0">12+ חודשים</div></div>
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;font-size:13.5px;border-top:1px solid #F0EAE0"><div style="padding:12px 16px;color:#6B6259;font-weight:600">שיפור צפוי בזמני המתנה</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0;color:#1F8A70;font-weight:700">‑28%</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0">‑9%</div></div>
+            <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;font-size:13.5px;border-top:1px solid #F0EAE0;background:#FCFBF8"><div style="padding:12px 16px;color:#6B6259;font-weight:600">שקיפות / הסברתיות</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0;color:#B7862A;font-weight:600">דורש explainability</div><div style="padding:12px 16px;border-right:1px solid #F0EAE0;color:#1F8A70;font-weight:600">גבוהה</div></div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap">
+            <div style="font-size:13px;color:#8A8079">עודכן לאחרונה ע״י ד״ר מיכל ברזילי · 02.07.2026</div>
+            <div style="display:flex;gap:10px">
+              <button style="background:#fff;border:1px solid #E7E0D6;color:#6B6259;font-family:Assistant;font-weight:600;font-size:13px;padding:10px 18px;border-radius:11px;cursor:pointer">חזרה לבעיית חיים</button>
+              <button style="background:linear-gradient(145deg,#6B5BD2,#8A79E8);border:none;color:#fff;font-family:Assistant;font-weight:700;font-size:13px;padding:10px 18px;border-radius:11px;cursor:pointer;box-shadow:0 6px 16px rgba(107,91,210,.3)">אשר והמשך לכרטיס פרויקט ←</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- CHALLENGE -->
+    <div class="panel" data-panel="ch" style="display:none;margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;padding:24px 26px;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg></div>
+          <div><div style="font-size:12px;font-weight:700;color:#1F8A70;letter-spacing:.06em">שלב 01 · כרטיס מטריה</div><div style="font-family:Rubik;font-weight:700;font-size:22px">עומס יתר על מערכת הבריאות הציבורית</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:14px">
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">תיאור האתגר הלאומי</div><div style="font-size:14px;color:#3A322C;line-height:1.65">גידול דמוגרפי והזדקנות האוכלוסייה מעמיסים על שירותי הבריאות, ומתבטאים בזמני המתנה, מחסור בכ״א ופערי נגישות בין מרכז לפריפריה — עם השפעה ישירה על תוצאי בריאות ואמון הציבור.</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:9px">תחומי מדיניות רלוונטיים</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:12px;font-weight:600;color:#5B4BD0;background:#EAE5FB;padding:5px 12px;border-radius:999px">בריאות</span><span style="font-size:12px;font-weight:600;color:#5B4BD0;background:#EAE5FB;padding:5px 12px;border-radius:999px">רווחה</span><span style="font-size:12px;font-weight:600;color:#5B4BD0;background:#EAE5FB;padding:5px 12px;border-radius:999px">תקציב</span><span style="font-size:12px;font-weight:600;color:#5B4BD0;background:#EAE5FB;padding:5px 12px;border-radius:999px">כוח אדם</span></div><div style="font-size:11px;font-weight:800;color:#A99E92;margin:14px 0 9px">בעלי עניין מטעם המכון</div><div style="display:flex;align-items:center;gap:-8px"><div style="display:flex"><div style="width:30px;height:30px;border-radius:50%;background:#B78BE8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff">מב</div><div style="width:30px;height:30px;border-radius:50%;background:#3FC99D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff;margin-right:-8px">אכ</div><div style="width:30px;height:30px;border-radius:50%;background:#E9A6C9;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid #fff;margin-right:-8px">רל</div></div><span style="font-size:13px;color:#6B6259;margin-right:10px">צוות מדיניות בריאות (3)</span></div></div>
+        </div>
+        <div style="margin-top:16px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:10px">תחומי מיקוד תחת האתגר</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+            <div style="border:1px solid #D9D0F0;background:#F7F5FE;border-radius:13px;padding:14px 16px"><div style="font-family:Rubik;font-weight:600;font-size:14px;color:#4A3D9E">ניהול זרימת מטופלים</div><div style="font-size:12px;color:#8A8079;margin-top:5px">4 בעיות חיים פתוחות · פעיל</div></div>
+            <div style="border:1px solid #EFE9DF;background:#FBF9F5;border-radius:13px;padding:14px 16px"><div style="font-family:Rubik;font-weight:600;font-size:14px;color:#3A322C">רפואה מרחוק בפריפריה</div><div style="font-size:12px;color:#8A8079;margin-top:5px">2 בעיות חיים פתוחות</div></div>
+            <div style="border:1px solid #EFE9DF;background:#FBF9F5;border-radius:13px;padding:14px 16px"><div style="font-family:Rubik;font-weight:600;font-size:14px;color:#3A322C">שימור כוח אדם סיעודי</div><div style="font-size:12px;color:#8A8079;margin-top:5px">1 בעיית חיים פתוחה</div></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:8px;font-size:13px;color:#6B6259"><span style="width:9px;height:9px;border-radius:50%;background:#22A67F"></span>סטטוס אתגר: <b style="color:#1F8A70">פעיל</b></div>
+      </div>
+    </div>
+  
+    <!-- FOCUS AREA -->
+    <div class="panel" data-panel="fo" style="display:none;margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;padding:24px 26px;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+          <div><div style="font-size:12px;font-weight:700;color:#1F8A70;letter-spacing:.06em">שלב 02 · תחום מיקוד / Mission</div><div style="font-family:Rubik;font-weight:700;font-size:22px">ניהול זרימת מטופלים בבתי חולים</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;background:#F7F5FE;border:1px solid #E4DEF7;border-radius:12px;padding:12px 16px">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6B5BD2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+          <span style="font-size:13px;color:#6B6259">קשור לאתגר האב:</span><b style="font-size:13px;color:#4A3D9E">עומס יתר על מערכת הבריאות הציבורית</b>
+        </div>
+        <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:14px">
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">תיאור היקף</div><div style="font-size:14px;color:#3A322C;line-height:1.65">מיקוד בשלבי הקבלה, ה‑triage וההעברה בין מחלקות בבתי חולים ציבוריים, שם נוצרים צווארי הבקבוק המרכזיים. אינו כולל שירותי קהילה ורפואה מונעת.</div></div>
+          <div style="background:#F4F1FE;border:1px solid #D9D0F0;border-radius:14px;padding:16px 18px;display:flex;flex-direction:column;justify-content:center;align-items:center"><div style="font-family:Rubik;font-weight:700;font-size:38px;color:#5B4BD0;line-height:1">4</div><div style="font-size:13px;color:#6B6259;margin-top:4px">בעיות חיים פתוחות</div></div>
+        </div>
+        <div style="margin-top:16px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:10px">עץ בעיות החיים תחת תחום המיקוד</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #D9D0F0;background:#F7F5FE;border-radius:11px;padding:12px 15px"><span style="width:8px;height:8px;border-radius:50%;background:#6B5BD2"></span><span style="font-size:14px;font-weight:600;color:#4A3D9E">המתנה ממושכת בחדרי מיון בשעות העומס</span><span style="margin-right:auto;font-size:11px;font-weight:700;color:#5B4BD0;background:#EAE5FB;padding:3px 10px;border-radius:999px">בשרשרת</span></div>
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #EFE9DF;background:#FBF9F5;border-radius:11px;padding:12px 15px"><span style="width:8px;height:8px;border-radius:50%;background:#C3B9AC"></span><span style="font-size:14px;color:#3A322C">עיכובים בשחרור מטופלים מאושפזים</span></div>
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #EFE9DF;background:#FBF9F5;border-radius:11px;padding:12px 15px"><span style="width:8px;height:8px;border-radius:50%;background:#C3B9AC"></span><span style="font-size:14px;color:#3A322C">חוסר יעילות בהעברות בין‑מחלקתיות</span></div>
+            <div style="display:flex;align-items:center;gap:10px;border:1px solid #EFE9DF;background:#FBF9F5;border-radius:11px;padding:12px 15px"><span style="width:8px;height:8px;border-radius:50%;background:#E2B84D"></span><span style="font-size:14px;color:#3A322C">גודש בבדיקות הדמיה</span><span style="margin-right:auto;font-size:11px;font-weight:700;color:#B7862A;background:#FBF0D6;padding:3px 10px;border-radius:999px">בהקפאה</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- LIFE PROBLEM -->
+    <div class="panel" data-panel="li" style="display:none;margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;padding:24px 26px;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:46px;height:46px;border-radius:13px;background:#E4F3EE;color:#1F8A70;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="11" r="2"/><path d="M5.4 16c.6-1.6 2-2.3 3.1-2.3s2.5.7 3.1 2.3"/><path d="M14.5 10h4M14.5 13.5h4"/></svg></div>
+            <div><div style="font-size:12px;font-weight:700;color:#1F8A70;letter-spacing:.06em">שלב 03 · כרטיס בעיית חיים</div><div style="font-family:Rubik;font-weight:700;font-size:22px">המתנה ממושכת בחדרי מיון בשעות העומס</div></div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#FFF6F1;border:1px solid #F6DCCD;padding:8px 13px;border-radius:11px"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#CF5F44" stroke-width="2" stroke-linecap="round"><path d="M12 8v5M12 16h.01"/><circle cx="12" cy="12" r="9"/></svg><span style="font-size:12px;font-weight:700;color:#C0714B">2 שאלות השלמה פתוחות</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:8px">אוכלוסיות מושפעות</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">מטופלים דחופים · קשישים · תושבי פריפריה · צוותי רפואה בשחיקה</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:8px">שורשי כשל</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">היעדר חיזוי עומסים · הקצאת משאבים ריאקטיבית · מיטות אשפוז תפוסות</div></div>
+          <div style="background:#FFF6F1;border:1px solid #F6DCCD;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#C0714B;margin-bottom:8px">נזק</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">המתנה חציונית של <b>4.7 שעות</b> · עלייה בסיבוכים · נטישת מיון ללא טיפול</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:8px">דאטה קיים</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">רשומות קבלה, שעות הגעה, נתוני איוש (24 חודשים)</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:8px">דאטה חסר</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">זמני שהייה בין‑מחלקתיים · תיוג triage אחיד · חומרה קלינית</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:8px">מדדים ראשוניים</div><div style="font-size:13.5px;color:#3A322C;line-height:1.7">זמן המתנה חציוני · % נטישה · שביעות רצון מטופלים</div></div>
+        </div>
+        <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:9px">בעלי עניין</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span style="font-size:12px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:5px 12px;border-radius:999px">משרד הבריאות</span><span style="font-size:12px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:5px 12px;border-radius:999px">הנהלות בתי חולים</span><span style="font-size:12px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:5px 12px;border-radius:999px">ארגוני מטופלים</span></div></div>
+          <div style="background:#FFF6F1;border:1px solid #F6DCCD;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#C0714B;margin-bottom:9px">שאלות השלמה פתוחות</div><div style="font-size:13px;color:#3A322C;line-height:1.7">◦ מהי רמת השונות בין בתי חולים גדולים לקטנים?<br>◦ האם קיימת הסכמה על הגדרת "זמן המתנה"?</div></div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- PROJECT CARD -->
+    <div class="panel" data-panel="pr" style="display:none;margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;overflow:hidden;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:20px 26px;border-bottom:1px dashed #E0D8CC;background:#FCFBF8;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:12px;background:#EFEBE4;color:#8A7F72;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg></div>
+            <div><div style="font-size:12px;font-weight:700;color:#A99E92;letter-spacing:.06em">שלב 05 · One‑Pager · נעול עד סיום AI Fit</div><div style="font-family:Rubik;font-weight:700;font-size:21px">מערכת חיזוי עומסים והקצאת משאבים בזמן אמת</div></div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E7E0D6;color:#6B6259;font-family:Assistant;font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:10px;cursor:pointer">Word</button>
+            <button style="display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #E7E0D6;color:#6B6259;font-family:Assistant;font-weight:600;font-size:12.5px;padding:8px 13px;border-radius:10px;cursor:pointer">PDF</button>
+            <button style="display:flex;align-items:center;gap:6px;background:#332B4F;border:none;color:#fff;font-family:Assistant;font-weight:700;font-size:12.5px;padding:8px 14px;border-radius:10px;cursor:pointer">הפק Decision Brief</button>
+          </div>
+        </div>
+        <div style="padding:24px 26px;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">הבעיה</div><div style="font-size:14px;color:#3A322C;line-height:1.65">המתנה חציונית של 4.7 שעות בחדרי מיון בשעות העומס, בשל הקצאת משאבים ריאקטיבית והיעדר חיזוי.</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">הפתרון המוצע</div><div style="font-size:14px;color:#3A322C;line-height:1.65">מנוע חיזוי עומסים 6 שעות קדימה, המזין לוח בקרה להקצאת צוותים ומיטות בזמן אמת.</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">דאטה נדרש</div><div style="font-size:14px;color:#3A322C;line-height:1.65">רשומות קבלה שעתיות, נתוני איוש, תפוסת מיטות, נתוני מזג אוויר ואירועים.</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:7px">מדדי הצלחה</div><div style="font-size:14px;color:#3A322C;line-height:1.65">‑25% בזמן המתנה חציוני · ‑40% במקרי נטישה · דיוק חיזוי ≥ 85%.</div></div>
+          <div style="background:#FFF6F1;border:1px solid #F6DCCD;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#C0714B;margin-bottom:7px">סיכונים מרכזיים</div><div style="font-size:14px;color:#3A322C;line-height:1.65">איכות דאטה לא אחידה · התנגדות צוותים לשינוי · רגישות נתוני בריאות.</div></div>
+          <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:14px;padding:16px 18px"><div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:9px">שותפים ובעל יישום</div><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><div style="width:28px;height:28px;border-radius:50%;background:#B78BE8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">אכ</div><div style="line-height:1.2"><div style="font-size:13px;font-weight:600">אבנר כהן · מוביל יישום</div><div style="font-size:11px;color:#8A8079">אגף דיגיטל, משרד הבריאות</div></div></div><div style="display:flex;gap:6px;flex-wrap:wrap"><span style="font-size:11px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:4px 10px;border-radius:999px">בי״ח שיבא</span><span style="font-size:11px;font-weight:600;color:#4A3F3A;background:#fff;border:1px solid #E7E0D6;padding:4px 10px;border-radius:999px">אוניברסיטת ת״א</span></div></div>
+        </div>
+        <div style="padding:0 26px 22px"><div style="background:#F4F1FE;border:1px solid #D9D0F0;border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:10px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#6B5BD2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg><span style="font-size:12px;font-weight:800;color:#8A79E8;letter-spacing:.04em">שלב הבא מומלץ</span><span style="font-size:14px;color:#4A3D9E;font-weight:600">מעבר ל‑Gate — אישור ממשל AI וסיכוני יישום</span></div></div>
+      </div>
+    </div>
+  
+    <!-- GATE -->
+    <div class="panel" data-panel="ga" style="display:none;margin-top:18px;animation:ni-rise .3s ease both">
+      <div style="background:#fff;border:1px solid #E7E0D6;border-radius:22px;overflow:hidden;box-shadow:0 8px 26px rgba(46,38,33,.06)">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:14px;padding:22px 26px;background:linear-gradient(120deg,#332B4F,#4A3F5E);color:#fff;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.3 12l2 2 3.4-4"/></svg></div>
+            <div><div style="font-size:12px;font-weight:700;color:#C9BFF3;letter-spacing:.06em">שלב 06 · שער החלטה · ממשל AI</div><div style="font-family:Rubik;font-weight:700;font-size:22px">Gate — אישור סופי</div></div>
+          </div>
+          <span style="font-size:12px;font-weight:700;color:#FBE7C2;background:rgba(226,184,77,.22);padding:6px 14px;border-radius:999px">ממתין להחלטה</span>
+        </div>
+        <div style="padding:22px 26px">
+          <div style="font-size:11px;font-weight:800;color:#A99E92;margin-bottom:12px">רשימת קריטריונים לממשל AI אחראי</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #B9E4D5;background:#E9F6F0;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">סיווג סיכון (בינוני — אושר)</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #B9E4D5;background:#E9F6F0;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">פרטיות (DPA + מזעור נתונים)</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #FBE1B4;background:#FDF6E7;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#E2B84D;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">הטיות (bias) — בבדיקה</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #B9E4D5;background:#E9F6F0;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">אבטחת מידע (ISO 27799)</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #F6CFC2;background:#FDEEE8;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#CF5F44;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">Explainability — חסר תיעוד</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #FBE1B4;background:#FDF6E7;border-radius:12px;padding:13px 16px"><span style="width:26px;height:26px;border-radius:50%;background:#E2B84D;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">Fallback ידני — בהגדרה</span></div>
+            <div style="display:flex;align-items:center;gap:11px;border:1px solid #B9E4D5;background:#E9F6F0;border-radius:12px;padding:13px 16px;grid-column:span 2"><span style="width:26px;height:26px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><span style="font-size:14px;font-weight:600;color:#2E2621">Audit trail — לוג החלטות מלא ומתועד</span></div>
+          </div>
+
+          <div style="margin-top:18px;display:grid;grid-template-columns:1.3fr 1fr;gap:14px">
+            <div style="border:1px dashed #C9BFF3;background:#F7F5FE;border-radius:14px;padding:18px 20px">
+              <div style="font-size:11px;font-weight:800;color:#8A79E8;margin-bottom:12px">אזור אישור דיגיטלי</div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#6B5BD2,#8A79E8);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700">רל</div><div style="line-height:1.3"><div style="font-size:14px;font-weight:700;color:#2E2621">רו״ח רונית לוי</div><div style="font-size:12px;color:#8A8079">יו״ר ועדת ממשל AI · גורם מאשר</div></div></div>
+              <div style="margin-top:14px;font-family:Rubik;font-style:italic;font-size:24px;color:#4A3D9E;border-bottom:2px solid #D9D0F0;padding-bottom:6px;display:inline-block">R. Levi</div>
+              <div style="font-size:11px;color:#A99E92;margin-top:6px">ממתין להשלמת 3 קריטריונים לפני חתימה</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;justify-content:center">
+              <button style="width:100%;background:linear-gradient(145deg,#22A67F,#3FC99D);border:none;color:#fff;font-family:Assistant;font-weight:700;font-size:14px;padding:13px;border-radius:12px;cursor:pointer">אשר את הפרויקט</button>
+              <button style="width:100%;background:#fff;border:1px solid #F0C9BC;color:#CF5F44;font-family:Assistant;font-weight:700;font-size:14px;padding:13px;border-radius:12px;cursor:pointer">החזר לתיקון</button>
+              <button style="width:100%;background:#fff;border:1px solid #E7E0D6;color:#8A8079;font-family:Assistant;font-weight:600;font-size:14px;padding:13px;border-radius:12px;cursor:pointer">דחה</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ===================== PORTFOLIO ============================ -->
+  <!-- ============================================================ -->
+    <div class="view" data-view="portfolio" style="display:none;max-width:1240px;margin:0 auto;animation:ni-rise .35s ease both">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;flex-wrap:wrap">
+      <div>
+        <div style="font-family:Rubik;font-weight:700;font-size:24px">פורטפוליו יוזמות</div>
+        <div style="font-size:13px;color:#8A8079;margin-top:3px">10 פרויקטים פעילים לפי שלב בשרשרת המתודולוגיה</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#6B6259;background:#fff;border:1px solid #E7E0D6;padding:7px 13px;border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:#22A67F"></span>הושלם</span>
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#6B6259;background:#fff;border:1px solid #E7E0D6;padding:7px 13px;border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:#6B5BD2"></span>בתהליך</span>
+        <span style="display:flex;align-items:center;gap:6px;font-size:12px;color:#6B6259;background:#fff;border:1px solid #E7E0D6;padding:7px 13px;border-radius:999px"><span style="width:8px;height:8px;border-radius:50%;background:#E2B84D"></span>חסום</span>
+      </div>
+    </div>
+
+    <div class="ni-scroll" style="overflow-x:auto;padding-bottom:10px">
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(210px,1fr));gap:14px;min-width:1180px">
+
+      <!-- Col 1 Challenge -->
+      <div style="background:#F6F2EA;border:1px solid #E7E0D6;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#1F8A70" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#2E2621">אתגר</span></div><span style="font-size:11px;font-weight:700;color:#8A8079;background:#fff;border:1px solid #E7E0D6;padding:2px 9px;border-radius:999px">2</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">שיפור אכיפת איכות אוויר בערים</div><div style="display:flex;align-items:center;gap:6px;margin-top:10px"><div style="width:22px;height:22px;border-radius:50%;background:#3FC99D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">יד</div><span style="font-size:12px;color:#8A8079">י. דגן</span></div></div>
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">צמצום פערים דיגיטליים בפריפריה</div><div style="display:flex;align-items:center;gap:6px;margin-top:10px"><div style="width:22px;height:22px;border-radius:50%;background:#B78BE8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">שנ</div><span style="font-size:12px;color:#8A8079">ש. נאור</span></div></div>
+        </div>
+      </div>
+
+      <!-- Col 2 Focus -->
+      <div style="background:#F6F2EA;border:1px solid #E7E0D6;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#1F8A70" stroke-width="1.9"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#2E2621">תחום מיקוד</span></div><span style="font-size:11px;font-weight:700;color:#8A8079;background:#fff;border:1px solid #E7E0D6;padding:2px 9px;border-radius:999px">1</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">זיהוי מוקדם של הצפות עירוניות</div><div style="display:flex;align-items:center;gap:6px;margin-top:10px"><div style="width:22px;height:22px;border-radius:50%;background:#E9A6C9;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">תג</div><span style="font-size:12px;color:#8A8079">ת. גל</span></div></div>
+        </div>
+      </div>
+
+      <!-- Col 3 Life -->
+      <div style="background:#F6F2EA;border:1px solid #E7E0D6;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#1F8A70" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="11" r="2"/><path d="M5.4 16c.6-1.6 2-2.3 3.1-2.3s2.5.7 3.1 2.3"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#2E2621">בעיית חיים</span></div><span style="font-size:11px;font-weight:700;color:#8A8079;background:#fff;border:1px solid #E7E0D6;padding:2px 9px;border-radius:999px">2</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">צמצום נשירת תלמידים בפריפריה</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:22px;border-radius:50%;background:#3FC99D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">דא</div><span style="font-size:12px;color:#8A8079">ד. אמסלם</span></div><span style="font-size:10px;font-weight:700;color:#B7862A;background:#FBF0D6;padding:2px 8px;border-radius:999px">3 שאלות</span></div></div>
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">הנגשת שירותי רווחה לניצולי שואה</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:22px;border-radius:50%;background:#B78BE8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">מפ</div><span style="font-size:12px;color:#8A8079">מ. פרץ</span></div><span style="font-size:10px;font-weight:700;color:#A99E92;background:#EFEBE4;padding:2px 8px;border-radius:999px">הקפאה</span></div></div>
+        </div>
+      </div>
+
+      <!-- Col 4 AI Fit -->
+      <div style="background:#F4F1FE;border:1px solid #D9D0F0;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#6B5BD2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#4A3D9E">AI Fit</span></div><span style="font-size:11px;font-weight:700;color:#5B4BD0;background:#fff;border:1px solid #D9D0F0;padding:2px 9px;border-radius:999px">2</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:2px solid #6B5BD2;border-radius:12px;padding:13px 14px;box-shadow:0 6px 16px rgba(107,91,210,.14)"><div style="font-size:10px;font-weight:800;color:#8A79E8;margin-bottom:5px">הפרויקט הנוכחי</div><div style="font-size:14px;font-weight:700;line-height:1.4;color:#2E2621">קיצור זמני המתנה בחדרי מיון</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:22px;border-radius:50%;background:#B78BE8;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">מב</div><span style="font-size:12px;color:#8A8079">מ. ברזילי</span></div><span style="font-size:10px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:2px 8px;border-radius:999px">מתאים AI</span></div></div>
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">סיוע בשיבוץ דיור ציבורי</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:22px;border-radius:50%;background:#3FC99D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">אב</div><span style="font-size:12px;color:#8A8079">א. בר</span></div><span style="font-size:10px;font-weight:700;color:#B7862A;background:#FBF0D6;padding:2px 8px;border-radius:999px">דורש בדיקה</span></div></div>
+        </div>
+      </div>
+
+      <!-- Col 5 Project card -->
+      <div style="background:#F6F2EA;border:1px solid #E7E0D6;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#8A7F72" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#2E2621">כרטיס פרויקט</span></div><span style="font-size:11px;font-weight:700;color:#8A8079;background:#fff;border:1px solid #E7E0D6;padding:2px 9px;border-radius:999px">2</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">הנגשת שירותים דיגיטליים לאזרחים ותיקים</div><div style="display:flex;align-items:center;gap:6px;margin-top:10px"><div style="width:22px;height:22px;border-radius:50%;background:#E9A6C9;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">גש</div><span style="font-size:12px;color:#8A8079">ג. שמש</span></div></div>
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">הפחתת תאונות בצמתים כפריים</div><div style="display:flex;align-items:center;gap:6px;margin-top:10px"><div style="width:22px;height:22px;border-radius:50%;background:#6B5BD2;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">נט</div><span style="font-size:12px;color:#8A8079">נ. טל</span></div></div>
+        </div>
+      </div>
+
+      <!-- Col 6 Gate -->
+      <div style="background:#F6F2EA;border:1px solid #E7E0D6;border-radius:16px;padding:12px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 6px 12px"><div style="display:flex;align-items:center;gap:7px"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#332B4F" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9.3 12l2 2 3.4-4"/></svg><span style="font-family:Rubik;font-weight:600;font-size:13px;color:#2E2621">Gate</span></div><span style="font-size:11px;font-weight:700;color:#8A8079;background:#fff;border:1px solid #E7E0D6;padding:2px 9px;border-radius:999px">1</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="background:#fff;border:1px solid #E7E0D6;border-radius:12px;padding:13px 14px"><div style="font-size:14px;font-weight:600;line-height:1.4;color:#2E2621">ייעול חלוקת מזון עודף</div><div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px"><div style="display:flex;align-items:center;gap:6px"><div style="width:22px;height:22px;border-radius:50%;background:#3FC99D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">רל</div><span style="font-size:12px;color:#8A8079">ר. לוי</span></div><span style="font-size:10px;font-weight:700;color:#5B4BD0;background:#EAE5FB;padding:2px 8px;border-radius:999px">בהחלטה</span></div></div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- ===================== MOBILE ============================== -->
+  <!-- ============================================================ -->
+    <div class="view view-mobile" data-view="mobile" style="display:none;max-width:1240px;margin:0 auto;animation:ni-rise .35s ease both">
+    <div style="text-align:center;max-width:520px"><div style="font-family:Rubik;font-weight:700;font-size:22px">תצוגת מובייל · Pipeline אנכי מקופל</div><div style="font-size:13px;color:#8A8079;margin-top:4px">בתצוגת מובייל/טאבלט השרשרת מתקפלת אנכית — כל תחנה כרטיס מתרחב, מלמעלה (אתגר) למטה (Gate).</div></div>
+
+    <!-- phone frame -->
+    <div style="width:390px;background:#1E1A2E;border-radius:44px;padding:12px;box-shadow:0 30px 60px rgba(30,26,46,.4)">
+      <div style="background:#F1ECE3;border-radius:34px;overflow:hidden;height:760px;display:flex;flex-direction:column">
+        <!-- status bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 22px 6px;font-size:13px;font-weight:700;color:#2E2621"><span>9:41</span><div style="width:120px;height:26px;background:#1E1A2E;border-radius:0 0 16px 16px;margin-top:-12px"></div><div style="display:flex;gap:5px;align-items:center"><svg viewBox="0 0 24 24" width="16" height="16" fill="#2E2621"><path d="M2 20h3v-6H2zM7 20h3V9H7zM12 20h3V4h-3zM17 20h3v-9h-3z"/></svg><svg viewBox="0 0 24 24" width="18" height="18" fill="#2E2621"><rect x="2" y="7" width="18" height="10" rx="3"/><rect x="21" y="10" width="1.5" height="4" rx=".7"/></svg></div></div>
+        <!-- app header -->
+        <div style="padding:6px 18px 14px;background:linear-gradient(135deg,#332B4F,#4A3F5E);color:#fff;border-radius:0 0 22px 22px">
+          <div style="display:flex;align-items:center;justify-content:space-between"><div style="display:flex;align-items:center;gap:8px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#C9BFF3" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg><span style="font-family:Rubik;font-weight:700;font-size:15px">מסלול פרויקט</span></div><div style="width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#E9A6C9,#B78BE8);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">מב</div></div>
+          <div style="font-family:Rubik;font-weight:700;font-size:17px;margin-top:12px;line-height:1.3">קיצור זמני המתנה בחדרי מיון</div>
+          <div style="display:flex;justify-content:space-between;font-size:11px;color:#C9BFF3;margin:12px 0 6px"><span>שלב 4 מתוך 6</span><span style="font-weight:700;color:#fff">58%</span></div>
+          <div style="height:6px;border-radius:999px;background:rgba(255,255,255,.15)"><div style="height:100%;width:58%;border-radius:999px;background:linear-gradient(90deg,#3FC99D,#8A79E8)"></div></div>
+        </div>
+        <!-- vertical stepper -->
+        <div class="ni-scroll" style="flex:1;overflow-y:auto;padding:16px 16px 24px">
+          <!-- 1 -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center;flex:0 0 auto"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div style="width:2px;flex:1;background:#22A67F;margin:4px 0"></div></div>
+            <div style="flex:1;background:#fff;border:1px solid #E7E0D6;border-radius:14px;padding:12px 14px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:600;font-size:14px">אתגר</span><span style="font-size:10px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:2px 8px;border-radius:999px">הושלם</span></div><div style="font-size:12px;color:#8A8079;margin-top:4px">עומס יתר על מערכת הבריאות</div></div>
+          </div>
+          <!-- 2 -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center;flex:0 0 auto"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div style="width:2px;flex:1;background:#22A67F;margin:4px 0"></div></div>
+            <div style="flex:1;background:#fff;border:1px solid #E7E0D6;border-radius:14px;padding:12px 14px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:600;font-size:14px">תחום מיקוד</span><span style="font-size:10px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:2px 8px;border-radius:999px">הושלם</span></div><div style="font-size:12px;color:#8A8079;margin-top:4px">ניהול זרימת מטופלים</div></div>
+          </div>
+          <!-- 3 -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#22A67F;display:flex;align-items:center;justify-content:center;flex:0 0 auto"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><div style="width:2px;flex:1;background:#8A79E8;margin:4px 0"></div></div>
+            <div style="flex:1;background:#fff;border:1px solid #E7E0D6;border-radius:14px;padding:12px 14px;margin-bottom:10px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:600;font-size:14px">בעיית חיים</span><span style="font-size:10px;font-weight:700;color:#1F8A70;background:#E4F3EE;padding:2px 8px;border-radius:999px">הושלם</span></div><div style="font-size:12px;color:#8A8079;margin-top:4px">המתנה ממושכת בחדרי מיון</div></div>
+          </div>
+          <!-- 4 active expanded -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#6B5BD2,#8A79E8);display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 0 0 4px #EAE5FB"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2.5"/><path d="M9 3v2M15 3v2M9 19v2M15 19v2M3 9h2M3 15h2M19 9h2M19 15h2"/></svg></div><div style="width:2px;flex:1;background:#E0D8CC;margin:4px 0"></div></div>
+            <div style="flex:1;background:linear-gradient(180deg,#F4F1FE,#fff);border:2px solid #6B5BD2;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 8px 20px rgba(107,91,210,.15)">
+              <div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:700;font-size:15px;color:#4A3D9E">AI Fit</span><span style="font-size:10px;font-weight:700;color:#5B4BD0;background:#EAE5FB;padding:2px 8px;border-radius:999px">בתהליך</span></div>
+              <div style="display:inline-flex;align-items:center;gap:6px;background:#E4F3EE;border:1px solid #B9E4D5;padding:5px 11px;border-radius:10px;margin-top:10px"><span style="width:8px;height:8px;border-radius:50%;background:#22A67F"></span><span style="font-size:12px;font-weight:700;color:#1F8A70">מתאים ל‑AI</span></div>
+              <div style="margin-top:11px;display:flex;flex-direction:column;gap:8px">
+                <div style="background:#FBF9F5;border:1px solid #EFE9DF;border-radius:10px;padding:9px 11px"><div style="font-size:10px;font-weight:800;color:#A99E92">סוג AI מוצע</div><div style="font-size:12.5px;color:#3A322C;margin-top:2px">חיזוי סדרות עתיות + אופטימיזציה</div></div>
+                <div style="background:#FFF6F1;border:1px solid #F6DCCD;border-radius:10px;padding:9px 11px"><div style="font-size:10px;font-weight:800;color:#C0714B">פערי דאטה</div><div style="font-size:12.5px;color:#3A322C;margin-top:2px">חסר תיוג triage ב‑30% מהרשומות</div></div>
+              </div>
+              <button style="width:100%;margin-top:11px;background:linear-gradient(145deg,#6B5BD2,#8A79E8);border:none;color:#fff;font-family:Assistant;font-weight:700;font-size:13px;padding:10px;border-radius:10px">אשר והמשך ←</button>
+            </div>
+          </div>
+          <!-- 5 locked -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#EFEBE4;display:flex;align-items:center;justify-content:center;flex:0 0 auto"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#B4A99D" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div style="width:2px;flex:1;background:#E0D8CC;margin:4px 0"></div></div>
+            <div style="flex:1;background:#fff;border:1px solid #E7E0D6;border-radius:14px;padding:12px 14px;margin-bottom:10px;opacity:.6"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:600;font-size:14px;color:#9A8F84">כרטיס פרויקט</span><span style="font-size:10px;font-weight:700;color:#A99E92;background:#EFEBE4;padding:2px 8px;border-radius:999px">נעול</span></div></div>
+          </div>
+          <!-- 6 locked -->
+          <div style="display:flex;gap:12px">
+            <div style="display:flex;flex-direction:column;align-items:center"><div style="width:34px;height:34px;border-radius:50%;background:#EFEBE4;display:flex;align-items:center;justify-content:center;flex:0 0 auto"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#B4A99D" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div></div>
+            <div style="flex:1;background:#fff;border:1px solid #E7E0D6;border-radius:14px;padding:12px 14px;opacity:.6"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-family:Rubik;font-weight:600;font-size:14px;color:#9A8F84">Gate</span><span style="font-size:10px;font-weight:700;color:#A99E92;background:#EFEBE4;padding:2px 8px;border-radius:999px">נעול</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  const state = { view: 'single', stage: 'ai' };
+
+  function setView(view) {
+    state.view = view;
+    document.querySelectorAll('.view').forEach(el => {
+      el.style.display = el.dataset.view === view ? '' : 'none';
+    });
+    document.querySelectorAll('.tab-btn').forEach(el => {
+      el.classList.toggle('active', el.dataset.viewBtn === view);
+    });
+  }
+
+  function selectStage(stage) {
+    state.stage = stage;
+    document.querySelectorAll('.stage-tile').forEach(el => {
+      el.classList.toggle('active-ring', el.dataset.stage === stage);
+    });
+    document.querySelectorAll('.panel').forEach(el => {
+      el.style.display = el.dataset.panel === stage ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
